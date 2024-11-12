@@ -9,6 +9,7 @@ compatibility_date = "2024-11-12"
 
 [vars]
 DATABASE_URL="prisma-accelerate"
+JWT_KEY="WRITEFLOW_PASSWORD23412543"
 
 
 # [[kv_namespaces]]
