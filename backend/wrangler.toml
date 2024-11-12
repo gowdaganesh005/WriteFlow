@@ -8,8 +8,9 @@ compatibility_date = "2024-11-12"
 # MY_VAR = "my-variable"
 
 [vars]
-DATABASE_URL="prisma://accelerate.prisma-data.net/?api_key=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhcGlfa2V5IjoiNzI0MGY5MmUtMjAxYy00MTMyLTk4MDAtNDQ5YjNmZDFjNjhkIiwidGVuYW50X2lkIjoiMzY3ODhiZmM0MTkyZTMyZTYwMGM0YjdjMjc4ODc0OWRiMzNlNjMyN2JjZGMzNzk1YzlkNzg3YjQxOTRlMDFlNiIsImludGVybmFsX3NlY3JldCI6ImI1Nzk5ZDViLTZkNmEtNDI5Mi1hZmQyLWRlZGE2YzczNWMzYSJ9.Ms7qjD-05w5dIeikErvWO33osuxRxxn_61zHMCDpxvc"
+DATABASE_URL=""
 
+JWT_KEY="WRITEFLOW_PASSWORD_KEY24835098582"
 
 
 # [[kv_namespaces]]
