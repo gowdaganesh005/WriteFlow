@@ -1,5 +1,5 @@
 import { Hono } from "hono";
-import { BlogSchema, BlogUpdateSchema } from "../Zod/types";
+import { BlogSchema, BlogUpdateSchema } from "gowda04-writeflow-common";
 import { authmiddleware } from "../middlewares/auth.middleware";
 import Client from "../util/prismaClient";
 

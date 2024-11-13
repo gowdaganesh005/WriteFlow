@@ -1,14 +1,13 @@
 import { Hono } from 'hono';
-import { UserSignUp,UserSignIn } from '../Zod/types';
+
 import z from 'zod'
 import Client from '../util/prismaClient';
 // import bcrypt from 'bcrypt'
 import { sign } from 'hono/jwt';
 import { comparePass, hashpassword } from '../util/hashing';
+import { UserSignIn,UserSignUp,UserSignIntype,UserSignUptype } from 'gowda04-writeflow-common';
 
-type UserSignUptype=z.infer<typeof UserSignUp>
 
-type UserSignIntype=z.infer<typeof UserSignIn>
 
 export const app=new Hono({strict:false});
 
