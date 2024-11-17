@@ -91,7 +91,7 @@ app.post('/signin',async (c:any)=>{
          body=await c.req.json()
         
     } catch (error) {
-        c.status(400)
+        c.status(411)
         return c.json({message:"InValid Input NO BODY INPUT",
            
         })
@@ -104,7 +104,7 @@ app.post('/signin',async (c:any)=>{
     try {
         UserSignIn.parse(userdata)
     } catch (error:any) {
-        c.status(400)
+        c.status(411)
         return c.json({message: error.issues[0].message})
         
     }
@@ -122,7 +122,7 @@ app.post('/signin',async (c:any)=>{
     })
 
     if(!user){
-        c.status(404)
+        c.status(403)
         return c.json({message: "User Does not exists"})
     }
     const isValid=await comparePass(userdata.password,user.password)

@@ -7,6 +7,7 @@ interface Blogtype{
     title: string
     content: string
     userid: string
+    publishedDate: Date
 
 }
 
@@ -16,18 +17,21 @@ interface Blogtype{
 app.post("/blog",authmiddleware,async(c:any)=>{
     const client=Client(c);
     const userid:string=c.get('userid')
+    const today = new Date();
+    const dateOnly = new Date(today.getFullYear(), today.getMonth(), today.getDate());
 
     const body=await c.req.json();
     const userdata:Blogtype={
         title:body.title,
         content:body.content,
-        userid: userid
+        userid: userid,
+        publishedDate: dateOnly
     }
 
     try {
         BlogSchema.parse(userdata)
     } catch (error:any) {
-        c.status(400)
+        c.status(411)
         return c.json({message: error.issues[0].message})
     }
     let response;
@@ -36,7 +40,8 @@ app.post("/blog",authmiddleware,async(c:any)=>{
          data:{
              title:userdata.title,
              content: userdata.content,
-             authorid: userid
+             authorid: userid,
+             publishedDate: userdata.publishedDate
          },
          select:{
              postid:true,
@@ -67,6 +72,18 @@ app.get("/blog/:id",async(c:any)=>{
          blog=await client.post.findFirst({
             where:{
                 postid: id
+            },
+            select:{
+                postid: true,
+                title: true,
+                content: true,
+                publishedDate: true,
+                author: {
+                    select:{
+                        name:true
+                    }
+                }
+
             }
         })
     } catch (error) {
@@ -89,7 +106,21 @@ app.get("/blog",async(c:any)=>{
    
     let blog;
     try {
-         blog=await client.post.findMany({})
+         blog=await client.post.findMany({
+            select:{
+                postid: true,
+                title: true,
+                content: true,
+                publishedDate: true,
+                author:{
+                    select:{
+                        name: true
+                    }
+                },
+                
+
+            }
+         })
     } catch (error) {
         c.status(500)
         return c.json({message:"Failed to fetch Posts\nInternal Server Error",
